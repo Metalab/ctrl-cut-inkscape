@@ -3,6 +3,8 @@
 	<name>Ctrl-Cut</name>
 	<id>at.metalab.ctrl-cut</id>
 
+	<dependency type="executable" location="extensions">inkex.py</dependency>
+
 	<effect needs-live-preview="false">
 		<object-type>all</object-type>
 		<effects-menu>
@@ -11,7 +13,7 @@
 	</effect>
 
 	<script>
-		<command reldir="extensions" interpreter="shell">ctrl-cut.sh</command>
+		<command reldir="extensions" interpreter="python">ctrl-cut.py</command>
 	</script>
 
 </inkscape-extension>
