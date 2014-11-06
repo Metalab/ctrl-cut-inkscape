@@ -16,6 +16,8 @@ if __name__ == '__main__':
 		epsfile = svgfile+".eps"
 		null = open(os.devnull, "w")
 		call(["inkscape", svgfile, "--export-eps="+epsfile], stderr=null)
-		Popen(["python", "ctrl-cut.py", epsfile, "child"], stdout=null, stderr=null)
+		if sys.platform == "win32":
+			Popen(["pythonw", "ctrl-cut.py", epsfile, "child"], close_fds=True)
+		else:
+			Popen(["python", "ctrl-cut.py", epsfile, "child"], stdout=null, stderr=null)
 		null.close()
-		os.remove(svgfile)
