@@ -8,16 +8,15 @@ def CtrlCut(epsfile):
 	os.remove(epsfile)
 
 if __name__ == '__main__':
-	if (len(sys.argv) > 2):
-		if (sys.argv[2] == "child"):
-			CtrlCut(sys.argv[1],)
+	if (sys.argv[1] == "child"):
+		CtrlCut(sys.argv[2],)
 	else:
 		svgfile = sys.argv[-1]
 		epsfile = svgfile+".eps"
 		null = open(os.devnull, "w")
 		call(["inkscape", svgfile, "--export-eps="+epsfile], stderr=null)
 		if sys.platform == "win32":
-			Popen(["pythonw", "ctrl-cut.py", epsfile, "child"], close_fds=True)
+			Popen(["pythonw", "ctrl-cut.py", "child", epsfile], close_fds=True)
 		else:
-			Popen(["python", "ctrl-cut.py", epsfile, "child"], stdout=null, stderr=null)
+			Popen(["python", "ctrl-cut.py", "child", epsfile], stdout=null, stderr=null)
 		null.close()
